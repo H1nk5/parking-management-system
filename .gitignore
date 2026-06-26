@@ -1,0 +1,30 @@
+# 依赖目录
+node_modules/
+
+# 数据库文件（运行时生成）
+backend/parking.db
+
+# 构建产物
+frontend/dist/
+frontend/build/
+
+# 日志文件
+*.log
+npm-debug.log*
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+
+# 编辑器配置
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
