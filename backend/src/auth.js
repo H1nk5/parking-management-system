@@ -4,9 +4,7 @@
  */
 
 const jwt = require('jsonwebtoken');
-
-// JWT密钥（生产环境应使用环境变量）
-const JWT_SECRET = 'parking-management-secret-key-2024';
+const { getJwtSecret } = require('./config');
 
 /**
  * 生成JWT Token
@@ -14,7 +12,7 @@ const JWT_SECRET = 'parking-management-secret-key-2024';
  * @returns {string} JWT Token
  */
 function generateToken(payload) {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: '24h' });
+  return jwt.sign(payload, getJwtSecret(), { expiresIn: '24h' });
 }
 
 /**
@@ -29,7 +27,7 @@ function authenticateToken(req, res, next) {
   }
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET);
+    const decoded = jwt.verify(token, getJwtSecret());
     req.user = decoded;
     next();
   } catch (err) {
@@ -58,7 +56,6 @@ function requireUser(req, res, next) {
 }
 
 module.exports = {
-  JWT_SECRET,
   generateToken,
   authenticateToken,
   requireAdmin,
